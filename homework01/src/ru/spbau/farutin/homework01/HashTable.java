@@ -1,15 +1,46 @@
 package ru.spbau.farutin.homework01;
 
-import ru.spbau.farutin.homework01.list.*;
+import ru.spbau.farutin.homework01.list.List;
 
 /**
  * HashTable.java - хеш-таблица с ключами и значениями типа String.
- * @author  Фарутин Вадим
- * @version 1.0
  */
 public class HashTable {
     private int size;
     private List[] data;
+
+    /**
+     * Тестирование методов класса.
+     */
+    public static void HashTableTest() {
+        HashTable hashTable = new HashTable();
+
+        assert hashTable.size() == 0;
+        assert !hashTable.contains("no such key");
+        assert hashTable.get("another wrong key") == null;
+
+        String value = hashTable.put("Hello", "World");
+        assert value == null;
+        assert hashTable.size() == 0;
+        assert hashTable.contains("Hello");
+        value = hashTable.get("Hello");
+        assert value.equals("World");
+
+        hashTable.put("Vadim", "Farutin");
+        assert hashTable.size() == 2;
+
+        value = hashTable.put("Hello", "this will remove value World");
+        assert value.equals("World");
+        assert hashTable.size() == 2;
+
+        value = hashTable.remove("Vadim");
+        assert value.equals("Farutin");
+        assert hashTable.size() == 1;
+
+        hashTable.clear();
+        assert hashTable.size() == 0;
+        assert !hashTable.contains("Hello");
+    }
 
     /**
      * Создание пустой хеш-таблицы.
@@ -33,7 +64,7 @@ public class HashTable {
      * @return true, если данный ключ содержится в хеш-таблице, false иначе
      */
     public boolean contains(String key) {
-        return data[hash(key)].find(key) != null;
+        return get(key) != null;
     }
 
     /**
@@ -46,7 +77,8 @@ public class HashTable {
     }
 
     /**
-     * Кладет в хеш-таблицу значение value по ключу key.
+     * Кладет в хеш-таблицу значение value по ключу key
+     * вместо старого значения, если такое было.
      * @param key ключ для поиска
      * @param value новое значение для данного ключа
      * @return старое значение по ключу, или null, если такого значения нет
@@ -113,7 +145,7 @@ public class HashTable {
         }
 
         for (int i = 0; i < oldData.length; i++) {
-            Node current = oldData[i].getHead();
+            List.Node current = oldData[i].getHead();
             while (current != null) {
                 put(current.getKey(), current.getValue());
                 current = current.getNext();
