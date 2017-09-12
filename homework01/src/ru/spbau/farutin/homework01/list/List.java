@@ -2,18 +2,9 @@ package ru.spbau.farutin.homework01.list;
 
 /**
  * List.java - двусвязный список ключей и значений типа String.
- * @author  Фарутин Вадим
- * @version 1.0
  */
 public class List {
-    private Node head;
-
-    /**
-     * Создание пустого списка.
-     */
-    public List() {
-        head = null;
-    }
+    private Node head = null;
 
     /**
      * Добавление пары.
@@ -33,10 +24,10 @@ public class List {
         Node current = head;
 
         while (current != null) {
-            if (current.getKey().equals(key)) {
-                return current.getValue();
+            if (current.key.equals(key)) {
+                return current.value;
             }
-            current = current.getNext();
+            current = current.next;
         }
 
         return null;
@@ -51,20 +42,20 @@ public class List {
         Node current = head;
 
         while (current != null) {
-            if (current.getKey().equals(key)) {
-                Node next = current.getNext();
-                Node prev = current.getPrev();
+            if (current.key.equals(key)) {
+                Node next = current.next;
+                Node prev = current.prev;
 
                 if (next != null) {
-                    next.setPrev(prev);
+                    next.prev = prev;
                 }
                 if (prev != null) {
-                    prev.setNext(next);
+                    prev.next = next;
                 }
 
-                return current.getValue();
+                return current.value;
             }
-            current = current.getNext();
+            current = current.next;
         }
 
         return null;
@@ -83,5 +74,54 @@ public class List {
      */
     public Node getHead() {
         return head;
+    }
+
+
+    /**
+     * Node.java - вершина двусвязного списка ключей и значений типа String.
+     */
+    public class Node {
+        private String key;
+        private String value;
+        private Node next;
+        private Node prev;
+
+        /**
+         * Создание вершины с данным ключом и значением.
+         * @param newKey ключ для поиска
+         * @param newValue значение для данного ключа
+         * @param newNext следующая вершина в списке
+         * @param newPrev предыдущая вершина в списке
+         */
+        private Node(String newKey, String newValue, Node newNext, Node newPrev) {
+            key = newKey;
+            value = newValue;
+            next = newNext;
+            prev = newPrev;
+        }
+
+        /**
+         * Геттер для ключа.
+         * @return ключ вершины
+         */
+        public String getKey() {
+            return key;
+        }
+
+        /**
+         * Геттер для значения.
+         * @return значение вершины
+         */
+        public String getValue() {
+            return value;
+        }
+
+        /**
+         * Геттер для следующей вершины.
+         * @return следующая вершина в списке
+         */
+        public Node getNext() {
+            return next;
+        }
     }
 }
