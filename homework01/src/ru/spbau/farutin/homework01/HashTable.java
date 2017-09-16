@@ -6,13 +6,10 @@ import ru.spbau.farutin.homework01.list.List;
  * HashTable.java - хеш-таблица с ключами и значениями типа String.
  */
 public class HashTable {
-    private int size;
+    private int size = 0;
     private List[] data;
 
-    /**
-     * Тестирование методов класса.
-     */
-    public static void HashTableTest() {
+    public static void main(String[] args) {
         HashTable hashTable = new HashTable();
 
         assert hashTable.size() == 0;
@@ -46,7 +43,6 @@ public class HashTable {
      * Создание пустой хеш-таблицы.
      */
     public HashTable() {
-        size = 0;
         data = new List[] {new List()};
     }
 
