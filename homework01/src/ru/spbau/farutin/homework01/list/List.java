@@ -100,26 +100,14 @@ public class List {
             prev = newPrev;
         }
 
-        /**
-         * Геттер для ключа.
-         * @return ключ вершины
-         */
         public String getKey() {
             return key;
         }
 
-        /**
-         * Геттер для значения.
-         * @return значение вершины
-         */
         public String getValue() {
             return value;
         }
 
-        /**
-         * Геттер для следующей вершины.
-         * @return следующая вершина в списке
-         */
         public Node getNext() {
             return next;
         }
