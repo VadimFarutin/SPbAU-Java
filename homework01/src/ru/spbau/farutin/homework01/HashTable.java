@@ -141,10 +141,9 @@ public class HashTable {
         }
 
         for (int i = 0; i < oldData.length; i++) {
-            List.Node current = oldData[i].getHead();
-            while (current != null) {
-                put(current.getKey(), current.getValue());
-                current = current.getNext();
+            while (oldData[i].getHead() != null) {
+                put(oldData[i].getHeadKey(), oldData[i].getHeadValue());
+                oldData[i].removeHead();
             }
         }
     }
