@@ -7,24 +7,8 @@ import java.util.Arrays;
  * print it spirally and sort columns by first element.
  */
 public class Spiral {
-    private int n;
+    private int size;
     private int[][] data;
-
-    public static void main(String[] args) {
-        Spiral spiral = new Spiral(new int[][] {{2, 3, 1}, {4, 5, 6}, {7, 8, 9}});
-
-        int[] result = spiral.print();
-        for (int i = 0; i < result.length; i++) {
-            System.out.print(" " + result[i]);
-        }
-
-        spiral.columnSort();
-
-        result = spiral.print();
-        for (int i = 0; i < result.length; i++) {
-            System.out.print(" " + result[i]);
-        }
-    }
 
     /**
      * Matrix is stored in rotated position
@@ -32,10 +16,10 @@ public class Spiral {
      * @param elements elements of int type, dimension must be odd
      */
     public Spiral(int[][] elements) {
-        n = elements.length;
-        data = new int[n][n];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+        size = elements.length;
+        data = new int[size][size];
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
                 data[i][j] = elements[j][i];
             }
         }
@@ -46,7 +30,7 @@ public class Spiral {
      * @return elements in spiral order
      */
     public int[] print() {
-        int[] result = new int[n * n];
+        int[] result = new int[size * size];
 
         int[] xDirection = new int[] {-1, 0, 1, 0};
         int[] yDirection = new int[] {0, 1, 0, -1};
@@ -54,11 +38,11 @@ public class Spiral {
         int elementsCount = 0;
         int length = 1;
         int directionIndex = 0;
-        int x = n / 2;
-        int y = n / 2;
+        int x = size / 2;
+        int y = size / 2;
 
         while (true) {
-            if (elementsCount == n * (n - 1)) {
+            if (elementsCount == size * (size - 1)) {
                 break;
             }
 
@@ -75,7 +59,7 @@ public class Spiral {
             length++;
         }
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < size; i++) {
             result[elementsCount++] = data[x--][y];
         }
 
