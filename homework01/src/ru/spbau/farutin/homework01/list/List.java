@@ -76,11 +76,33 @@ public class List {
         return head;
     }
 
+    /**
+     * Возвращает ключ первого элемента.
+     * @return ключ первого элемента
+     */
+    public String getHeadKey() {
+        return head.key;
+    }
+
+    /**
+     * Возвращает значение первого элемента.
+     * @return значение первого элемента
+     */
+    public String getHeadValue() {
+        return head.value;
+    }
+
+    /**
+     * Удаляет первый элемент.
+     */
+    public void removeHead() {
+        head = head.next;
+    }
 
     /**
      * Node.java - вершина двусвязного списка ключей и значений типа String.
      */
-    public class Node {
+    private class Node {
         private String key;
         private String value;
         private Node next;
