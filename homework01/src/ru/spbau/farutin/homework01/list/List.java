@@ -121,17 +121,5 @@ public class List {
             next = newNext;
             prev = newPrev;
         }
-
-        public String getKey() {
-            return key;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        public Node getNext() {
-            return next;
-        }
     }
 }
