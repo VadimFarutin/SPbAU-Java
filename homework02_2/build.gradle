@@ -1,0 +1,15 @@
+group 'ru.spbau.farutin'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0-M4")
+    testRuntime("org.junit.platform:junit-platform-runner:1.0.0-M4")
+}
