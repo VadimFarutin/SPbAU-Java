@@ -1,8 +1,8 @@
 package ru.spbau.farutin.homework02_2;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 /**
  * SpiralTest.java - unit tests for Spiral class.
@@ -17,7 +17,7 @@ public class SpiralTest {
         Spiral spiral = new Spiral(new int[][] {{7}});
         int[] expectedResult = new int[] {7};
 
-        assertArrayEquals(expectedResult, spiral.print(), "wrong print() output");
+        assertArrayEquals("wrong print() output", expectedResult, spiral.print());
     }
 
     @Test
@@ -27,7 +27,7 @@ public class SpiralTest {
                                                 {7, 8, 9}});
         int[] expectedResult = new int[] {5, 4, 7, 8, 9, 6, 1, 3, 2};
 
-        assertArrayEquals(expectedResult, spiral.print(), "wrong print() output");
+        assertArrayEquals("wrong print() output", expectedResult, spiral.print());
     }
 
     @Test
@@ -39,7 +39,7 @@ public class SpiralTest {
                                                 {7, 6, 3, 4, 4}});
         int[] expectedResult = new int[] {7, 0, 5, 3, 2, 8, 3, 6, 5, 4, 0, 1, 7, 6, 3, 4, 4, 9, 9, 2, 3, 4, 1, 5, 2};
 
-        assertArrayEquals(expectedResult, spiral.print(), "wrong print() output");
+        assertArrayEquals("wrong print() output", expectedResult, spiral.print());
     }
 
     /**
@@ -52,7 +52,7 @@ public class SpiralTest {
         spiral.columnSort();
         int[] expectedResult = new int[] {7};
 
-        assertArrayEquals(expectedResult, spiral.print(), "columns are sorted incorrectly");
+        assertArrayEquals("columns are sorted incorrectly", expectedResult, spiral.print());
     }
 
     @Test
@@ -63,7 +63,7 @@ public class SpiralTest {
         spiral.columnSort();
         int[] expectedResult = new int[] {4, 6, 9, 7, 8, 5, 3, 2, 1};
 
-        assertArrayEquals(expectedResult, spiral.print(), "columns are sorted incorrectly");
+        assertArrayEquals("columns are sorted incorrectly", expectedResult, spiral.print());
     }
 
     @Test
@@ -76,6 +76,6 @@ public class SpiralTest {
         spiral.columnSort();
         int[] expectedResult = new int[] {9, 0, 1, 9, 2, 8, 3, 2, 4, 6, 7, 3, 3, 7, 4, 4, 6, 5, 0, 5, 5, 4, 3, 2, 1};
 
-        assertArrayEquals(expectedResult, spiral.print(), "columns are sorted incorrectly");
+        assertArrayEquals("columns are sorted incorrectly", expectedResult, spiral.print());
     }
 }
