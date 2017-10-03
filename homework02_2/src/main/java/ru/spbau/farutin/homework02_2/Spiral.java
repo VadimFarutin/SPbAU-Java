@@ -41,11 +41,7 @@ public class Spiral {
         int x = size / 2;
         int y = size / 2;
 
-        while (true) {
-            if (elementsCount == size * (size - 1)) {
-                break;
-            }
-
+        while (elementsCount != size * (size - 1)) {
             for (int i = 0; i < 2; i++) {
                 for (int j = 0; j < length; j++) {
                     result[elementsCount++] = data[x][y];
