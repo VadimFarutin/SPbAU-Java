@@ -1,0 +1,9 @@
+# gradle
+.gradle/
+/gradlew
+/gradlew.bat
+/gradle/
+build/
+# IntelliJ IDEA
+/.idea/workspace.xml
+/.idea/tasks.xml
