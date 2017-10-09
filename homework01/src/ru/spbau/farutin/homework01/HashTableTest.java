@@ -39,8 +39,10 @@ public class HashTableTest extends HashTable {
         String sameKey = "second";
         hashTable.put("first", "Hello");
         hashTable.put(sameKey, "World");
-        hashTable.put(sameKey, "this value will replace old one");
+        String oldValue = hashTable.put(sameKey, "this value will replace old one");
 
+        assertTrue(oldValue != null, "wrong old value");
+        assertTrue(oldValue.equals("World"), "wrong old value");
         assertEquals(2, hashTable.size(), "wrong size");
     }
 
@@ -125,9 +127,11 @@ public class HashTableTest extends HashTable {
 
         HashTable hashTable = new HashTable();
         hashTable.put(key, value);
-        hashTable.put(key, newValue);
+        String oldValue = hashTable.put(key, newValue);
 
-        assertEquals(newValue, hashTable.data[0].find(key), "wrong value");
+        assertTrue(oldValue != null, "wrong old value");
+        assertTrue(oldValue.equals(value), "wrong old value");
+        assertEquals(newValue, hashTable.get(key), "wrong value");
     }
 
     /**
