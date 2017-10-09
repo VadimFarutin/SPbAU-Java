@@ -4,7 +4,7 @@ package ru.spbau.farutin.homework01.list;
  * List.java - двусвязный список ключей и значений типа String.
  */
 public class List {
-    protected Node head = null;
+    private Node head = null;
 
     /**
      * Добавление пары.
@@ -106,11 +106,11 @@ public class List {
     /**
      * Node.java - вершина двусвязного списка ключей и значений типа String.
      */
-    protected static class Node {
-        protected String key;
-        protected String value;
-        protected Node next;
-        protected Node prev;
+    private static class Node {
+        private String key;
+        private String value;
+        private Node next;
+        private Node prev;
 
         /**
          * Создание вершины с данным ключом и значением.
@@ -119,13 +119,11 @@ public class List {
          * @param newNext следующая вершина в списке
          * @param newPrev предыдущая вершина в списке
          */
-        protected Node(String newKey, String newValue, Node newNext, Node newPrev) {
+        private Node(String newKey, String newValue, Node newNext, Node newPrev) {
             key = newKey;
             value = newValue;
             next = newNext;
             prev = newPrev;
         }
-
-        protected Node() {}
     }
 }

@@ -7,7 +7,7 @@ import ru.spbau.farutin.homework01.list.List;
  */
 public class HashTable {
     private int size = 0;
-    protected List[] data;
+    private List[] data;
 
     /**
      * Создание пустой хеш-таблицы.
