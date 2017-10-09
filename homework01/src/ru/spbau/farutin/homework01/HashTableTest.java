@@ -111,7 +111,7 @@ public class HashTableTest extends HashTable {
         HashTable hashTable = new HashTable();
         hashTable.put(key, value);
 
-        assertEquals(value, hashTable.data[0].find(key), "wrong value");
+        assertEquals(value, hashTable.get(key), "wrong value");
     }
 
     /**
@@ -193,7 +193,7 @@ public class HashTableTest extends HashTable {
         HashTable hashTable = new HashTable();
         hashTable.put("first", "this will increase size from 1 to 2");
 
-        assertEquals(2, hashTable.data.length, "wrong array length");
+        assertEquals(1, hashTable.size(), "wrong size");
     }
 
     /**
@@ -205,7 +205,6 @@ public class HashTableTest extends HashTable {
         hashTable.put("first", "this will increase size from 1 to 2");
         hashTable.put("second", "this will increase size from 2 to 4");
 
-        assertEquals(4, hashTable.data.length, "wrong array length");
         assertEquals(true, hashTable.contains("first"), "missed first key");
         assertEquals(true, hashTable.contains("second"), "missed second key");
         assertEquals(2, hashTable.size(), "wrong size");
@@ -213,7 +212,6 @@ public class HashTableTest extends HashTable {
         hashTable.put("third", "nothing happens");
         hashTable.put("fourth", "this will increase size from 4 to 8");
 
-        assertEquals(8, hashTable.data.length, "wrong array length");
         assertEquals(true, hashTable.contains("first"), "missed first key");
         assertEquals(true, hashTable.contains("second"), "missed second key");
         assertEquals(true, hashTable.contains("third"), "missed third key");
@@ -231,7 +229,6 @@ public class HashTableTest extends HashTable {
         hashTable.put("second", "hash is equals to (-906279820 % hashtable.data.length),");
         // h1 == h2 when all elements are added
 
-        assertEquals(4, hashTable.data.length, "wrong array length");
         assertEquals(true, hashTable.contains("first"), "missed first key");
         assertEquals(true, hashTable.contains("second"), "missed second key");
         assertEquals(2, hashTable.size(), "wrong size");
@@ -251,7 +248,6 @@ public class HashTableTest extends HashTable {
         hashTable.put("sixth", "hash is equals to (109451990 % hashtable.data.length)");
         // h1 == h3 && h3 == h5 when all elements are added
 
-        assertEquals(8, hashTable.data.length, "wrong array length");
         assertEquals(true, hashTable.contains("first key"), "missed first key");
         assertEquals(true, hashTable.contains("second"), "missed second key");
         assertEquals(true, hashTable.contains("third"), "missed third key");
