@@ -36,9 +36,9 @@ public class Maybe<T> {
      * Getter for stored value, throws exception if it is null
      * @return not null value
      */
-    public @NotNull T get() throws MaybeException {
+    public @NotNull T get() throws ValueNotFoundException {
         if (!isPresent()) {
-            throw new MaybeException("Get from nothing");
+            throw new ValueNotFoundException("Get from nothing");
         }
 
         return t;

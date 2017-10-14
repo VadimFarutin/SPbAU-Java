@@ -46,8 +46,8 @@ public class MaybeTest {
         try {
             int i = maybe.get();
             assertEquals("wrong value", 7, i);
-        } catch (MaybeException e) {
             assertTrue(e.getMessage(), false);
+        } catch (ValueNotFoundException e) {
         }
     }
 
@@ -97,8 +97,8 @@ public class MaybeTest {
         try {
             int i = applied.get();
             assertEquals("wrong value", 14, i);
-        } catch (MaybeException e) {
             assertTrue(e.getMessage(), false);
+        } catch (ValueNotFoundException e) {
         }
     }
 
@@ -144,8 +144,8 @@ public class MaybeTest {
                     try {
                         assertEquals("wrong number",
                                 expected.get(i).get(), result.get(i).get());
-                    } catch (MaybeException e) {
                         assertTrue(e.getMessage(), false);
+                    } catch (ValueNotFoundException e) {
                     }
                 } else {
                     assertEquals("element should be null",
@@ -202,8 +202,8 @@ public class MaybeTest {
                         int a = result.get(i).get();
                         out.write(String.valueOf(a * a));
                         out.newLine();
-                    } catch (MaybeException e) {
                         assertTrue(e.getMessage(), false);
+                    } catch (ValueNotFoundException e) {
                     }
                 } else {
                     out.write("null");
