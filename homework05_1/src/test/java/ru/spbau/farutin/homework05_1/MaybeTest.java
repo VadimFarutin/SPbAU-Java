@@ -46,8 +46,8 @@ public class MaybeTest {
         try {
             int i = maybe.get();
             assertEquals("wrong value", 7, i);
-            assertTrue(e.getMessage(), false);
         } catch (ValueNotFoundException e) {
+            fail(e.getMessage());
         }
     }
 
@@ -91,8 +91,8 @@ public class MaybeTest {
         try {
             int i = applied.get();
             assertEquals("wrong value", 14, i);
-            assertTrue(e.getMessage(), false);
         } catch (ValueNotFoundException e) {
+            fail(e.getMessage());
         }
     }
 
@@ -138,8 +138,8 @@ public class MaybeTest {
                     try {
                         assertEquals("wrong number",
                                 expected.get(i).get(), result.get(i).get());
-                        assertTrue(e.getMessage(), false);
                     } catch (ValueNotFoundException e) {
+                        fail(e.getMessage());
                     }
                 } else {
                     assertEquals("element should be null",
@@ -149,7 +149,7 @@ public class MaybeTest {
 
             scanner.close();
         } catch (FileNotFoundException e) {
-            assertTrue(e.getMessage(), false);
+            fail(e.getMessage());
         }
     }
 
@@ -197,8 +197,8 @@ public class MaybeTest {
                     try {
                         out.write(String.valueOf(current.get()));
                         out.newLine();
-                        assertTrue(e.getMessage(), false);
                     } catch (ValueNotFoundException e) {
+                        fail(e.getMessage());
                     }
                 } else {
                     out.write("null");
@@ -210,7 +210,7 @@ public class MaybeTest {
             out.flush();
             out.close();
         } catch (Exception e) {
-            assertTrue(e.getMessage(), false);
+            fail(e.getMessage());
         }
     }
 }
