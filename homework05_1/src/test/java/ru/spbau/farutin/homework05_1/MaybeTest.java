@@ -54,16 +54,10 @@ public class MaybeTest {
     /**
      * Tests get() on Maybe with null value.
      */
-    @Test
-    public void testGetNull() {
+    @Test(expected = ValueNotFoundException.class)
+    public void testGetNull() throws ValueNotFoundException {
         Maybe<Integer> maybe = Maybe.nothing();
-
-        try {
-            int i = maybe.get();
-            assertTrue("get() did not throw an exception", false);
-        } catch (MaybeException e) {
-            assertEquals("wrong exception","Get from nothing", e.getMessage());
-        }
+        maybe.get();
     }
 
     /**
