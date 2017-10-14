@@ -187,14 +187,15 @@ public class MaybeTest {
             ArrayList<Maybe<Integer>> result = new ArrayList<>();
 
             while (scanner.hasNextLine()) {
-                result.add(readInt(scanner));
+                result.add(readInt(scanner).map(x -> x * x));
             }
 
             for (int i = 0; i < result.size(); i++) {
-                if (result.get(i).isPresent()) {
+                Maybe<Integer> current = result.get(i);
+
+                if (current.isPresent()) {
                     try {
-                        int a = result.get(i).get();
-                        out.write(String.valueOf(a * a));
+                        out.write(String.valueOf(current.get()));
                         out.newLine();
                         assertTrue(e.getMessage(), false);
                     } catch (ValueNotFoundException e) {
