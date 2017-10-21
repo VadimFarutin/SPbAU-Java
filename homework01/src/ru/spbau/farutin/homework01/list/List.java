@@ -53,6 +53,10 @@ public class List {
                     prev.next = next;
                 }
 
+                if (current == head) {
+                    head = head.next;
+                }
+
                 return current.value;
             }
             current = current.next;
@@ -102,7 +106,7 @@ public class List {
     /**
      * Node.java - вершина двусвязного списка ключей и значений типа String.
      */
-    private class Node {
+    private static class Node {
         private String key;
         private String value;
         private Node next;

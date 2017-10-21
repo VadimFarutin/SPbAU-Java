@@ -9,36 +9,6 @@ public class HashTable {
     private int size = 0;
     private List[] data;
 
-    public static void main(String[] args) {
-        HashTable hashTable = new HashTable();
-
-        assert hashTable.size() == 0;
-        assert !hashTable.contains("no such key");
-        assert hashTable.get("another wrong key") == null;
-
-        String value = hashTable.put("Hello", "World");
-        assert value == null;
-        assert hashTable.size() == 0;
-        assert hashTable.contains("Hello");
-        value = hashTable.get("Hello");
-        assert value.equals("World");
-
-        hashTable.put("Vadim", "Farutin");
-        assert hashTable.size() == 2;
-
-        value = hashTable.put("Hello", "this will remove value World");
-        assert value.equals("World");
-        assert hashTable.size() == 2;
-
-        value = hashTable.remove("Vadim");
-        assert value.equals("Farutin");
-        assert hashTable.size() == 1;
-
-        hashTable.clear();
-        assert hashTable.size() == 0;
-        assert !hashTable.contains("Hello");
-    }
-
     /**
      * Создание пустой хеш-таблицы.
      */
