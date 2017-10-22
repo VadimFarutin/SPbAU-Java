@@ -1,0 +1,6 @@
+123
+0
+not_a_number
+477
+k
+100hello
