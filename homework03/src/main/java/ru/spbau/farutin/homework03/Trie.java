@@ -10,12 +10,15 @@ import java.nio.ByteBuffer;
  * Trie.java - this class implements basic trie functionality.
  */
 public class Trie implements Serializable {
+    /**
+     * Elements number in used alphabet.
+     */
     public static final int ALPHABET_SIZE = Character.MAX_VALUE;
 
     private Vertex head = new Vertex();
 
     /**
-     * Getter for trie size.
+     * Getter for trie size, constant complexity.
      * @return quantity of strings stored in trie
      */
     public int size() {
@@ -23,7 +26,7 @@ public class Trie implements Serializable {
     }
 
     /**
-     * Adds new element.
+     * Adds new element, linear in element size.
      * @param element new string to add
      * @return true if trie did not contain element before adding, false otherwise
      */
@@ -32,7 +35,7 @@ public class Trie implements Serializable {
     }
 
     /**
-     * Checks whether trie contains element.
+     * Checks whether trie contains element, linear in element size.
      * @param element string to find in trie
      * @return true if trie contains element, false otherwise
      */
@@ -41,7 +44,7 @@ public class Trie implements Serializable {
     }
 
     /**
-     * Counts quantity of stored strings with given prefix.
+     * Counts quantity of stored strings with given prefix, linear in prefix size.
      * @param prefix common prefix to find
      * @return quantity of stored strings with given prefix
      */
@@ -50,7 +53,7 @@ public class Trie implements Serializable {
     }
 
     /**
-     * Removes element from trie.
+     * Removes element from trie, linear in element size.
      * @param element string to delete
      * @return true if trie contained element before removing, false otherwise
      */
@@ -59,7 +62,7 @@ public class Trie implements Serializable {
     }
 
     /**
-     * Prints trie.
+     * Prints trie, linear in trie size.
      * @param out output stream
      */
     public void serialize(OutputStream out) throws IOException {
@@ -67,7 +70,7 @@ public class Trie implements Serializable {
     }
 
     /**
-     * Reads trie.
+     * Reads trie, linear in trie size.
      * @param in input stream
      */
     public void deserialize(InputStream in) throws IOException {
