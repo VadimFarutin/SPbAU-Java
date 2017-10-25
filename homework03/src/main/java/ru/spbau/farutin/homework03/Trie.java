@@ -99,7 +99,7 @@ public class Trie implements Serializable {
          * @return true if trie contained element before adding, false otherwise
          */
         protected boolean add(String element) {
-            boolean existed;
+            boolean existed = isTerminal;
 
             if (element.length() == 0) {
                 existed = isTerminal;
@@ -129,7 +129,7 @@ public class Trie implements Serializable {
          * @return true if trie contains element, false otherwise
          */
         protected boolean contains(String element) {
-            boolean existed;
+            boolean existed = isTerminal;
 
             if (element.length() == 0) {
                 existed = isTerminal;
