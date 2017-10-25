@@ -102,11 +102,7 @@ public class Trie implements Serializable {
             boolean existed = isTerminal;
 
             if (element.length() == 0) {
-                existed = isTerminal;
                 isTerminal = true;
-                if (!existed) {
-                    size++;
-                }
             } else {
                 Vertex nextVertex = next[element.charAt(0)];
 
@@ -115,9 +111,11 @@ public class Trie implements Serializable {
                     nextVertex = next[element.charAt(0)];
                 }
 
-                size -= nextVertex.getSize();
                 existed = nextVertex.add(element.substring(1));
-                size += nextVertex.getSize();
+            }
+
+            if (!existed) {
+                size++;
             }
 
             return existed;
@@ -131,9 +129,7 @@ public class Trie implements Serializable {
         protected boolean contains(String element) {
             boolean existed = isTerminal;
 
-            if (element.length() == 0) {
-                existed = isTerminal;
-            } else {
+            if (element.length() != 0) {
                 Vertex nextVertex = next[element.charAt(0)];
                 existed = (nextVertex != null)
                         && nextVertex.contains(element.substring(1));
@@ -171,21 +167,20 @@ public class Trie implements Serializable {
             if (element.length() == 0) {
                 existed = isTerminal;
                 isTerminal = false;
-                if (existed) {
-                    size--;
-                }
             } else {
                 Vertex nextVertex = next[element.charAt(0)];
 
                 if (nextVertex != null) {
-                    size -= nextVertex.getSize();
                     existed = nextVertex.remove(element.substring(1));
-                    size += nextVertex.getSize();
 
                     if (nextVertex.getSize() == 0) {
                         next[element.charAt(0)] = null;
                     }
                 }
+            }
+
+            if (existed) {
+                size--;
             }
 
             return existed;
