@@ -50,6 +50,6 @@ public interface Function2<T, U, S> {
      * @return curried function.
      */
     default @NotNull Function1<T, Function1<U, S>> curry() {
-        return t -> (u -> apply(t, u));
+        return this::bind1;
     }
 }
