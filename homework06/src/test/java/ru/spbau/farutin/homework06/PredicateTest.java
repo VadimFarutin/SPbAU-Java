@@ -47,15 +47,17 @@ public class PredicateTest {
      * Checks ALWAYS_TRUE predicate value.
      */
     @Test
+    @SuppressWarnings("unchecked")
     public void testAlwaysTrue() {
-        assertTrue("not always true!", Predicate.ALWAYS_TRUE.apply("whatever"));
+        assertTrue("not always true!", (Boolean) Predicate.ALWAYS_TRUE.apply("whatever"));
     }
 
     /**
      * Checks ALWAYS_FALSE predicate value.
      */
     @Test
+    @SuppressWarnings("unchecked")
     public void testAlwaysFalse() {
-        assertFalse("not always false!", Predicate.ALWAYS_FALSE.apply("blah blah"));
+        assertFalse("not always false!", (Boolean) Predicate.ALWAYS_FALSE.apply("blah blah"));
     }
 }

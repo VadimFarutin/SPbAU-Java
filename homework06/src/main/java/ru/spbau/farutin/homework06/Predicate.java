@@ -10,12 +10,12 @@ public interface Predicate<T> extends Function1<T, Boolean>{
     /**
      * This predicate represents constant true.
      */
-    Predicate<Object> ALWAYS_TRUE = t -> true;
+    Predicate ALWAYS_TRUE = t -> true;
 
     /**
      * This predicate represents constant false.
      */
-    Predicate<Object> ALWAYS_FALSE = t -> false;
+    Predicate ALWAYS_FALSE = t -> false;
 
     /**
      * Logical and with another predicate.
