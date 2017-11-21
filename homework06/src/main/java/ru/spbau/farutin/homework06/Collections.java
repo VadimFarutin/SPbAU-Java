@@ -79,21 +79,9 @@ public class Collections {
      * @param <T> type of elements
      * @return list with new elements
      */
-    public static @NotNull <T> ArrayList<T> takeUnless(@NotNull Predicate<? super T> p,
-                                                       @NotNull Iterable<T> a) {
-        ArrayList<T> list = new ArrayList<>();
-
-        for (Iterator<T> it = a.iterator(); it.hasNext(); ) {
-            T element = it.next();
-
-            if (p.apply(element)) {
-                break;
-            }
-
-            list.add(element);
-        }
-
-        return list;
+    public static @NotNull <T> List<T> takeUnless(@NotNull Predicate<? super T> p,
+                                                  @NotNull Iterable<T> a) {
+        return takeWhile(p.not(), a);
     }
 
     /**
