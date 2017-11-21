@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Collections - presents methods operating with iterables and collections.
@@ -18,12 +19,12 @@ public class Collections {
      * @param <U> type of new elements
      * @return list with new elements
      */
-    public static @NotNull <T, U> ArrayList<U> map(@NotNull Function1<? super T, ? extends U> f,
-                                                   @NotNull Iterable<T> a) {
+    public static @NotNull <T, U> List<U> map(@NotNull Function1<? super T, ? extends U> f,
+                                              @NotNull Iterable<T> a) {
         ArrayList<U> list = new ArrayList<>();
 
-        for (Iterator<T> it = a.iterator(); it.hasNext(); ) {
-            list.add(f.apply(it.next()));
+        for (T element : a) {
+            list.add(f.apply(element));
         }
 
         return list;
@@ -36,13 +37,11 @@ public class Collections {
      * @param <T> type of elements
      * @return list with new elements
      */
-    public static @NotNull <T> ArrayList<T> filter(@NotNull Predicate<? super T> p,
-                                                   @NotNull Iterable<T> a) {
+    public static @NotNull <T> List<T> filter(@NotNull Predicate<? super T> p,
+                                              @NotNull Iterable<T> a) {
         ArrayList<T> list = new ArrayList<>();
 
-        for (Iterator<T> it = a.iterator(); it.hasNext(); ) {
-            T element = it.next();
-
+        for (T element : a) {
             if (p.apply(element)) {
                 list.add(element);
             }
@@ -58,13 +57,11 @@ public class Collections {
      * @param <T> type of elements
      * @return list with new elements
      */
-    public static @NotNull <T> ArrayList<T> takeWhile(@NotNull Predicate<? super T> p,
-                                                      @NotNull Iterable<T> a) {
+    public static @NotNull <T> List<T> takeWhile(@NotNull Predicate<? super T> p,
+                                                 @NotNull Iterable<T> a) {
         ArrayList<T> list = new ArrayList<>();
 
-        for (Iterator<T> it = a.iterator(); it.hasNext(); ) {
-            T element = it.next();
-
+        for (T element : a) {
             if (!p.apply(element)) {
                 break;
             }
