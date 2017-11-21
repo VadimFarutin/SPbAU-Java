@@ -3,6 +3,7 @@ package ru.spbau.farutin.homework06;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeSet;
 
 import static org.junit.Assert.*;
@@ -23,7 +24,7 @@ public class CollectionsTest {
             expected.add(i * i);
         }
 
-        ArrayList<Integer> res = Collections.map(x -> x * x, list);
+        List<Integer> res = Collections.map(x -> x * x, list);
 
         assertEquals("wrong array size", expected.size(), res.size());
         assertArrayEquals("wrong array values", expected.toArray(), res.toArray());
@@ -42,7 +43,7 @@ public class CollectionsTest {
             expected.add(i);
         }
 
-        ArrayList<Integer> res = Collections.filter(x -> x % 2 == 0, list);
+        List<Integer> res = Collections.filter(x -> x % 2 == 0, list);
 
         assertEquals("wrong array size", expected.size(), res.size());
         assertArrayEquals("wrong array values", expected.toArray(), res.toArray());
@@ -63,7 +64,7 @@ public class CollectionsTest {
             expected.add(i);
         }
 
-        ArrayList<Integer> res = Collections.takeWhile(x -> x < 7, list);
+        List<Integer> res = Collections.takeWhile(x -> x < 7, list);
 
         assertEquals("wrong array size", expected.size(), res.size());
         assertArrayEquals("wrong array values", expected.toArray(), res.toArray());
@@ -84,7 +85,7 @@ public class CollectionsTest {
             expected.add(i);
         }
 
-        ArrayList<Integer> res = Collections.takeUnless(x -> x >= 7, list);
+        List<Integer> res = Collections.takeUnless(x -> x >= 7, list);
 
         assertEquals("wrong array size", expected.size(), res.size());
         assertArrayEquals("wrong array values", expected.toArray(), res.toArray());
