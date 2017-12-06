@@ -20,6 +20,7 @@ public class Set<E> extends AbstractSet<E> {
      * Constructs a new, empty set, sorted according to the natural ordering of its elements.
      * All elements inserted into the set must implement the Comparable interface.
      */
+    @SuppressWarnings("unchecked")
     public Set() {
         this((o1, o2) -> ((Comparable<? super E>)o1).compareTo(o2));
     }
