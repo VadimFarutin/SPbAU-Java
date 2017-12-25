@@ -8,33 +8,33 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * Set - simple set implementation.
+ * Tree - simple tree implementation.
  * @param <E> type of stored values
  */
-public class Set<E> extends AbstractSet<E> {
+public class Tree<E> extends AbstractSet<E> {
     private Comparator<? super E> cmp = null;
     private int size = 0;
-    protected Node head = null;
+    private Node head = null;
 
     /**
-     * Constructs a new, empty set, sorted according to the natural ordering of its elements.
-     * All elements inserted into the set must implement the Comparable interface.
+     * Constructs a new, empty tree, sorted according to the natural ordering of its elements.
+     * All elements inserted into the tree must implement the Comparable interface.
      */
     @SuppressWarnings("unchecked")
-    public Set() {
+    public Tree() {
         this((o1, o2) -> ((Comparable<? super E>)o1).compareTo(o2));
     }
 
     /**
-     * Constructs an empty set, sorted according to the specified comparator.
-     * @param comparator the comparator that will be used to order this set
+     * Constructs an empty tree, sorted according to the specified comparator.
+     * @param comparator the comparator that will be used to order this tree
      */
-    public Set(@NotNull Comparator<? super E> comparator) {
+    public Tree(@NotNull Comparator<? super E> comparator) {
         cmp = comparator;
     }
 
     /**
-     * Returns an iterator over the elements in this set in ascending order.
+     * Returns an iterator over the elements in this tree in ascending order.
      * @return iterator over the elements
      */
     @Override
@@ -76,9 +76,9 @@ public class Set<E> extends AbstractSet<E> {
     }
 
     /**
-     * Adds new value to set.
+     * Adds new value to tree.
      * @param e value to add
-     * @return true if value did not exist in set, false otherwise
+     * @return true if value did not exist in tree, false otherwise
      */
     @Override
     public boolean add(E e) {
@@ -127,9 +127,107 @@ public class Set<E> extends AbstractSet<E> {
     }
 
     /**
-     * Node - subclass representing node in set.
+     * Returns an iterator over the elements in this tree in descending order
+     * @return an iterator over the elements in descending order
      */
-    protected class Node {
+    public @NotNull Iterator<E> descendingIterator() {
+        return new Iterator<E>() {
+            private Node current = head == null ? null : head.lastNode();
+
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public E next() throws NoSuchElementException {
+                if (!hasNext()) {
+                    throw new NoSuchElementException("No more elements");
+                }
+
+                E currentValue = current.getValue();
+                current = current.prev();
+
+                return currentValue;
+            }
+
+            @Override
+            public void remove() throws UnsupportedOperationException {
+                throw new UnsupportedOperationException("Removing is not implemented");
+            }
+        };
+    }
+
+    /**
+     * Returns the first (lowest) element currently in this tree.
+     * @return the first (lowest) element currently in this tree
+     * @throws NoSuchElementException if tree is empty
+     */
+    public E first() throws NoSuchElementException {
+        if (head == null) {
+            throw new NoSuchElementException("Empty tree");
+        }
+
+        return head.first();
+    }
+
+    /**
+     * Returns the last (highest) element currently in this tree.
+     * @return the last (highest) element currently in this tree
+     * @throws NoSuchElementException if tree is empty
+     */
+    public E last() throws NoSuchElementException {
+        if (head == null) {
+            throw new NoSuchElementException("Empty tree");
+        }
+
+        return head.last();
+    }
+
+    /**
+     * Returns the greatest element in this tree strictly less than the given element,
+     * or null if there is no such element.
+     * @param e the value to match
+     * @return the greatest element less than e, or null if there is no such element
+     */
+    public E lower(E e) {
+        return head == null ? null : head.lower(e);
+    }
+
+    /**
+     * Returns the greatest element in this tree less than or equal to the given element,
+     * or null if there is no such element.
+     * @param e the value to match
+     * @return the greatest element less than or equal to e, or null if there is no such element
+     */
+    public E floor(E e) {
+        return head == null ? null : head.floor(e);
+    }
+
+    /**
+     * Returns the least element in this tree greater than or equal to the given element,
+     * or null if there is no such element.
+     * @param e the value to match
+     * @return the least element greater than or equal to e, or null if there is no such element
+     */
+    public E ceiling(E e) {
+        return head == null ? null : head.ceiling(e);
+    }
+
+    /**
+     * Returns the least element in this tree strictly greater than the given element,
+     * or null if there is no such element.
+     * @param e the value to match
+     * @return the least element greater than e, or null if there is no such element
+     */
+    public E higher(E e) {
+        return head == null ? null : head.higher(e);
+    }
+
+    /**
+     * Node - subclass representing node in tree.
+     */
+    private class Node {
         private E value;
         private Node left = null;
         private Node right = null;
@@ -140,19 +238,19 @@ public class Set<E> extends AbstractSet<E> {
             this.parent = parent;
         }
 
-        protected E getValue() {
+        private E getValue() {
             return value;
         }
 
-        protected E first() {
+        private E first() {
             return left == null ? value : left.first();
         }
 
-        protected E last() {
+        private E last() {
             return right == null ? value : right.last();
         }
 
-        protected E lower(E e) {
+        private E lower(E e) {
             int cmpResult = cmp.compare(value, e);
 
             if (cmpResult == 0) {
@@ -172,7 +270,7 @@ public class Set<E> extends AbstractSet<E> {
             return left == null ? null : left.lower(e);
         }
 
-        protected E higher(E e) {
+        private E higher(E e) {
             int cmpResult = cmp.compare(value, e);
 
             if (cmpResult == 0) {
@@ -192,7 +290,7 @@ public class Set<E> extends AbstractSet<E> {
             return right == null ? null : right.higher(e);
         }
 
-        protected E ceiling(E e) {
+        private E ceiling(E e) {
             int cmpResult = cmp.compare(value, e);
 
             if (cmpResult == 0) {
@@ -212,7 +310,7 @@ public class Set<E> extends AbstractSet<E> {
             return right == null ? null : right.ceiling(e);
         }
 
-        protected E floor(E e) {
+        private E floor(E e) {
             int cmpResult = cmp.compare(value, e);
 
             if (cmpResult == 0) {
@@ -232,7 +330,7 @@ public class Set<E> extends AbstractSet<E> {
             return left == null ? null : left.floor(e);
         }
 
-        protected Node next() {
+        private Node next() {
             if (right != null) {
                 return right.firstNode();
             }
@@ -245,7 +343,8 @@ public class Set<E> extends AbstractSet<E> {
             return current.parent;
         }
 
-        protected @NotNull Node firstNode() {
+        @NotNull
+        private Node firstNode() {
             Node current = this;
 
             while (current.left != null) {
@@ -255,7 +354,7 @@ public class Set<E> extends AbstractSet<E> {
             return current;
         }
 
-        protected Node prev() {
+        private Node prev() {
             if (left != null) {
                 return left.lastNode();
             }
@@ -268,7 +367,8 @@ public class Set<E> extends AbstractSet<E> {
             return current.parent;
         }
 
-        protected @NotNull Node lastNode() {
+        @NotNull
+        private Node lastNode() {
             Node current = this;
 
             while (current.right != null) {
