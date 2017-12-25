@@ -2,6 +2,7 @@ package ru.spbau.farutin.homework07;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.AbstractSet;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -10,13 +11,15 @@ import java.util.NoSuchElementException;
  * MyTreeSetImpl - TreeSet implementation.
  * @param <E> type of stored values
  */
-public class MyTreeSetImpl<E> extends Set<E> implements MyTreeSet<E> {
+public class MyTreeSetImpl<E> extends AbstractSet<E> implements MyTreeSet<E> {
+    private Tree<E> dataTree = null;
+
     /**
      * Constructs a new, empty tree set, sorted according to the natural ordering of its elements.
      * All elements inserted into the set must implement the Comparable interface.
      */
     public MyTreeSetImpl() {
-        super();
+        dataTree = new Tree<>();
     }
 
     /**
@@ -24,7 +27,35 @@ public class MyTreeSetImpl<E> extends Set<E> implements MyTreeSet<E> {
      * @param comparator the comparator that will be used to order this set
      */
     public MyTreeSetImpl(@NotNull Comparator<? super E> comparator) {
-        super(comparator);
+        dataTree = new Tree<>(comparator);
+    }
+
+    /**
+     * Returns an iterator over the elements in this set in ascending order.
+     * @return iterator over the elements
+     */
+    @Override
+    public @NotNull Iterator<E> iterator() {
+        return dataTree.iterator();
+    }
+
+    /**
+     * Getter for size.
+     * @return number of stored values
+     */
+    @Override
+    public int size() {
+        return dataTree.size();
+    }
+
+    /**
+     * Adds new value to set.
+     * @param e value to add
+     * @return true if value did not exist in set, false otherwise
+     */
+    @Override
+    public boolean add(E e) {
+        return dataTree.add(e);
     }
 
     /**
@@ -33,40 +64,7 @@ public class MyTreeSetImpl<E> extends Set<E> implements MyTreeSet<E> {
      */
     @Override
     public @NotNull Iterator<E> descendingIterator() {
-        return new Iterator<E>() {
-            private Node current = head == null ? null : head.lastNode();
-
-            @Override
-            public boolean hasNext() {
-                return current != null;
-            }
-
-            @Override
-            public E next() throws NoSuchElementException {
-                if (!hasNext()) {
-                    throw new NoSuchElementException("No more elements");
-                }
-
-                E currentValue = current.getValue();
-                current = current.prev();
-
-                return currentValue;
-            }
-
-            @Override
-            public void remove() throws UnsupportedOperationException {
-                throw new UnsupportedOperationException("Removing is not implemented");
-            }
-        };
-    }
-
-    /**
-     * Returns a reverse order view of the elements contained in this set.
-     * @return a reverse order view of this set
-     */
-    @Override
-    public @NotNull MyTreeSet<E> descendingSet() {
-        return new DescendingTreeSet(this);
+        return dataTree.descendingIterator();
     }
 
     /**
@@ -76,11 +74,7 @@ public class MyTreeSetImpl<E> extends Set<E> implements MyTreeSet<E> {
      */
     @Override
     public E first() throws NoSuchElementException {
-        if (head == null) {
-            throw new NoSuchElementException("Empty set");
-        }
-
-        return head.first();
+        return dataTree.first();
     }
 
     /**
@@ -90,11 +84,7 @@ public class MyTreeSetImpl<E> extends Set<E> implements MyTreeSet<E> {
      */
     @Override
     public E last() throws NoSuchElementException {
-        if (head == null) {
-            throw new NoSuchElementException("Empty set");
-        }
-
-        return head.last();
+        return dataTree.last();
     }
 
     /**
@@ -105,7 +95,7 @@ public class MyTreeSetImpl<E> extends Set<E> implements MyTreeSet<E> {
      */
     @Override
     public E lower(E e) {
-        return head == null ? null : head.lower(e);
+        return dataTree.lower(e);
     }
 
     /**
@@ -116,7 +106,7 @@ public class MyTreeSetImpl<E> extends Set<E> implements MyTreeSet<E> {
      */
     @Override
     public E floor(E e) {
-        return head == null ? null : head.floor(e);
+        return dataTree.floor(e);
     }
 
     /**
@@ -127,7 +117,7 @@ public class MyTreeSetImpl<E> extends Set<E> implements MyTreeSet<E> {
      */
     @Override
     public E ceiling(E e) {
-        return head == null ? null : head.ceiling(e);
+        return dataTree.ceiling(e);
     }
 
     /**
@@ -138,7 +128,16 @@ public class MyTreeSetImpl<E> extends Set<E> implements MyTreeSet<E> {
      */
     @Override
     public E higher(E e) {
-        return head == null ? null : head.higher(e);
+        return dataTree.higher(e);
+    }
+
+    /**
+     * Returns a reverse order view of the elements contained in this set.
+     * @return a reverse order view of this set
+     */
+    @Override
+    public @NotNull MyTreeSet<E> descendingSet() {
+        return new DescendingTreeSet(this);
     }
 
     /**
