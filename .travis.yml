@@ -1,7 +1,8 @@
 language: java
 jdk:
- - oraclejdk8
+  - oraclejdk8
 os:
- - linux
+  - linux
 script:
- - gradle test
+  - chmod +x subdirectories_build.sh
+  - ./subdirectories_build.sh
