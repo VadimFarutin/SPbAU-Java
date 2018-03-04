@@ -60,10 +60,12 @@ public class LazyFactory {
 
             @Override
             public T get() {
-                synchronized (this) {
-                    if (!executed) {
-                        object = ((Supplier) object).get();
-                        executed = true;
+                if (!executed) {
+                    synchronized (this) {
+                        if (!executed) {
+                            object = ((Supplier) object).get();
+                            executed = true;
+                        }
                     }
                 }
 
