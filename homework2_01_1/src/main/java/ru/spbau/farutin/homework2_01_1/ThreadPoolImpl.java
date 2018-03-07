@@ -91,7 +91,7 @@ public class ThreadPoolImpl<T> {
      */
     private class LightFutureImpl implements LightFuture<T> {
         private Supplier<T> task;
-        private T value = null;
+        private volatile T value = null;
         private boolean ready = false;
         private boolean success = false;
 
