@@ -11,13 +11,12 @@ import java.util.function.Supplier;
  */
 public class LazyFactory {
     /**
-     * Builds Lazy object for one thread.
+     * Builds Lazy value for one thread.
      * @param supplier supplier to execute
      * @param <T> supplier return value type
      * @return lazy equivalent of given supplier
      * @throws IllegalArgumentException if supplier is null
      */
-    @SuppressWarnings("unchecked")
     public static @NotNull <T> Lazy<T> createSingleThreadLazy(@Nullable Supplier<T> supplier)
             throws IllegalArgumentException {
         if (supplier == null) {
@@ -25,29 +24,28 @@ public class LazyFactory {
         }
 
         return new Lazy<T>() {
-            private Object object = supplier;
+            private T value = null;
             private boolean executed = false;
 
             @Override
             public T get() {
                 if (!executed) {
-                    object = ((Supplier) object).get();
+                    value = supplier.get();
                     executed = true;
                 }
 
-                return (T) object;
+                return value;
             }
         };
     }
 
     /**
-     * Builds Lazy object for multiple threads.
+     * Builds Lazy value for multiple threads.
      * @param supplier supplier to execute
      * @param <T> supplier return value type
      * @return lazy equivalent of given supplier
      * @throws IllegalArgumentException if supplier is null
      */
-    @SuppressWarnings("unchecked")
     public static @NotNull <T> Lazy<T> createMultiThreadLazy(@Nullable Supplier<T> supplier)
             throws IllegalArgumentException {
         if (supplier == null) {
@@ -55,7 +53,7 @@ public class LazyFactory {
         }
 
         return new Lazy<T>() {
-            private Object object = supplier;
+            private volatile T value = null;
             private boolean executed = false;
 
             @Override
@@ -63,13 +61,13 @@ public class LazyFactory {
                 if (!executed) {
                     synchronized (this) {
                         if (!executed) {
-                            object = ((Supplier) object).get();
+                            value = supplier.get();
                             executed = true;
                         }
                     }
                 }
 
-                return (T) object;
+                return value;
             }
         };
     }
