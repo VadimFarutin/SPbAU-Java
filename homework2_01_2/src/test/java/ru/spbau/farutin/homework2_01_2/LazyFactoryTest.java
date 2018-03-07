@@ -66,20 +66,29 @@ public class LazyFactoryTest {
 
     @Test
     public void createMultiThreadLazySimple() throws Exception {
+        final boolean[] failed = {false};
+
         Lazy<Integer> lazy = LazyFactory.createMultiThreadLazy(() -> 42);
-        Runnable check = () -> assertThat(lazy.get(), is(42));
+        Runnable check = () -> failed[0] |= (lazy.get() != 42);
 
         Thread first = new Thread(check);
         Thread second = new Thread(check);
 
         first.start();
         second.start();
+
+        first.join();
+        second.join();
+
+        assertFalse(failed[0]);
     }
 
     @Test
     public void createMultiThreadLazyWithNullValue() throws Exception {
+        final boolean[] failed = {false};
+
         Lazy<Object> lazy = LazyFactory.createMultiThreadLazy(() -> null);
-        Runnable check = () -> assertThat(lazy.get() == null, is(true));
+        Runnable check = () -> failed[0] |= (lazy.get() != null);
 
         Thread first = new Thread(check);
         Thread second = new Thread(check);
@@ -88,6 +97,12 @@ public class LazyFactoryTest {
         first.start();
         second.start();
         third.start();
+
+        first.join();
+        second.join();
+        third.join();
+
+        assertFalse(failed[0]);
     }
 
     @Test
@@ -98,7 +113,7 @@ public class LazyFactoryTest {
             output.add("second");
             return true;
         });
-        Runnable check = () -> assertThat(lazy.get(), is(true));
+        Runnable check = lazy::get;
 
         output.add("first");
 
@@ -106,6 +121,9 @@ public class LazyFactoryTest {
         for (int i = 0; i < 4; i++) {
             threads.add(new Thread(check));
             threads.get(i).start();
+        }
+
+        for (int i = 0; i < 4; i++) {
             threads.get(i).join();
         }
 
@@ -124,7 +142,7 @@ public class LazyFactoryTest {
         });
         Runnable check = () ->  {
             for (int i = 0; i < 1000; i++) {
-                assertThat(lazy.get(), is(true));
+                lazy.get();
             }
         };
 
@@ -132,6 +150,9 @@ public class LazyFactoryTest {
         for (int i = 0; i < 4; i++) {
             threads.add(new Thread(check));
             threads.get(i).start();
+        }
+
+        for (int i = 0; i < 4; i++) {
             threads.get(i).join();
         }
 
@@ -149,7 +170,7 @@ public class LazyFactoryTest {
         });
         Runnable check = () ->  {
             for (int i = 0; i < 1e7; i++) {
-                assertThat(lazy.get(), is(true));
+                lazy.get();
             }
         };
 
@@ -157,6 +178,9 @@ public class LazyFactoryTest {
         for (int i = 0; i < 8; i++) {
             threads.add(new Thread(check));
             threads.get(i).start();
+        }
+
+        for (int i = 0; i < 8; i++) {
             threads.get(i).join();
         }
 
