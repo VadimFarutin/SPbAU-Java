@@ -87,7 +87,6 @@ public class ThreadPoolImpl<T> {
 
     /**
      * LightFutureImpl - LightFuture implementation for ThreadPoolImpl.
-     *
      */
     private class LightFutureImpl implements LightFuture<T> {
         private Supplier<T> task;
@@ -109,12 +108,12 @@ public class ThreadPoolImpl<T> {
             if (!ready) {
                 synchronized (this) {
                     if (!ready) {
-                        ready = true;
-
                         try {
                             value = task.get();
                         } catch (Exception e) {
                             throw new LightExecutionException();
+                        } finally {
+                            ready = true;
                         }
 
                         success = true;
