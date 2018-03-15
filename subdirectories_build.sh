@@ -21,4 +21,4 @@ build_subdirectory () {
   exit
 }
 
-find -maxdepth 1 -mindepth 1 -type d | build_subdirectory
+find -maxdepth 2 -mindepth 2 -type d | build_subdirectory
