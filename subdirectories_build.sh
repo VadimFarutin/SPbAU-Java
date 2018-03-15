@@ -7,15 +7,18 @@ build_subdirectory () {
   do
     #printf "%s\n" "$name"
 
-    cd $name
-
-    if [ -f "gradlew" ]
+    if [ -d "$name"]
     then
-      chmod +x gradlew
-      ./gradlew build
-    fi
+      cd $name
 
-    cd ..
+      if [ -f "gradlew" ]
+      then
+        chmod +x gradlew
+        ./gradlew build
+      fi
+
+      cd ../..
+    fi
   done
 
   exit
