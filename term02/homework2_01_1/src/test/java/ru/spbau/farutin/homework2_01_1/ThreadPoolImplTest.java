@@ -91,10 +91,20 @@ public class ThreadPoolImplTest {
         ThreadPoolImpl<Integer> pool = new ThreadPoolImpl<>(20);
         Supplier<Integer> task = () -> 42;
         Function<Integer, Integer> after = (i) -> 0;
+        final int N = 10000;
 
-        for (int i = 0; i < 10000; i++) {
+        ArrayList<LightFuture> results = new ArrayList<>();
+        ArrayList<LightFuture> resultsAfter = new ArrayList<>();
+
+        for (int i = 0; i < N; i++) {
             LightFuture<Integer> result = pool.addTask(task);
-            result.thenApply(after);
+            results.add(result);
+            resultsAfter.add(result.thenApply(after));
+        }
+
+        for (int i = 0; i < N; i++) {
+            assertThat(results.get(i).get(), is(42));
+            assertThat(resultsAfter.get(i).get(), is(0));
         }
 
         pool.shutdown();
