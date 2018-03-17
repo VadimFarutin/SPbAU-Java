@@ -7,7 +7,7 @@ build_subdirectory () {
   do
     #printf "%s\n" "$name"
 
-    if [ -d "$name"]
+    if [ -d "$name" ]
     then
       cd $name
 
