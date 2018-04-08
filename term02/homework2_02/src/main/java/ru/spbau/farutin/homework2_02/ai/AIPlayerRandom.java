@@ -20,17 +20,14 @@ public class AIPlayerRandom implements AIPlayer {
     @Override
     public @NotNull Pair<Integer, Integer> chooseMove(@NotNull Field field) {
         int size = field.getSize();
-        int x, y;
 
         while (true) {
-            x = random.nextInt(size);
-            y = random.nextInt(size);
+            int x = random.nextInt(size);
+            int y = random.nextInt(size);
 
             if (field.isCellFree(x, y)) {
-                break;
+                return new Pair<>(x, y);
             }
         }
-
-        return new Pair<>(x, y);
     }
 }
