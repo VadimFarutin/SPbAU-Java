@@ -42,7 +42,7 @@ public class FieldTest {
      * Tests getCellValue on all types of cells.
      */
     @Test
-    public void getCellValue() throws Exception {
+    public void testGetCellValue() throws Exception {
         Field field = new Field(3);
         field.makeMove(0, 1, 2);
         field.makeMove(1, 1, 0);
@@ -71,7 +71,7 @@ public class FieldTest {
      * Tests makeMove on free cell.
      */
     @Test
-    public void makeMoveAccepted() throws Exception {
+    public void testMakeMoveAccepted() throws Exception {
         Field field = new Field(3);
 
         assertTrue(field.makeMove(0, 1, 2));
@@ -82,7 +82,7 @@ public class FieldTest {
      * Tests makeMove on not free cell.
      */
     @Test
-    public void makeMoveNotAccepted() throws Exception {
+    public void testMakeMoveNotAccepted() throws Exception {
         Field field = new Field(3);
 
         assertTrue(field.makeMove(0, 1, 2));
@@ -97,7 +97,7 @@ public class FieldTest {
      * Tests makeMove with illegal coordinates.
      */
     @Test
-    public void makeMoveOutOfBounds() throws Exception {
+    public void testMakeMoveOutOfBounds() throws Exception {
         Field field = new Field(3);
         assertFalse(field.makeMove(0, 4, 0));
     }
@@ -147,7 +147,7 @@ public class FieldTest {
      * Tests checkWin when winning combination is horizontal.
      */
     @Test
-    public void checkWinHorizontal() throws Exception {
+    public void testCheckWinHorizontal() throws Exception {
         Field field = new Field(3);
 
         field.makeMove(0, 1, 0);
@@ -165,7 +165,7 @@ public class FieldTest {
      * Tests checkWin when winning combination is vertical.
      */
     @Test
-    public void checkWinVertical() throws Exception {
+    public void testCheckWinVertical() throws Exception {
         Field field = new Field(3);
 
         field.makeMove(0, 1, 0);
@@ -183,7 +183,7 @@ public class FieldTest {
      * Tests checkWin when winning combination is from left bottom to right top corner.
      */
     @Test
-    public void checkWinDiagonalFirst() throws Exception {
+    public void testCheckWinDiagonalFirst() throws Exception {
         Field field = new Field(3);
 
         field.makeMove(0, 0, 0);
@@ -201,7 +201,7 @@ public class FieldTest {
      * Tests checkWin when winning combination is from left top to right bottom corner.
      */
     @Test
-    public void checkWinDiagonalSecond() throws Exception {
+    public void testCheckWinDiagonalSecond() throws Exception {
         Field field = new Field(3);
 
         field.makeMove(0, 2, 0);
