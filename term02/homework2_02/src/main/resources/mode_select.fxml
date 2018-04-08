@@ -14,17 +14,17 @@
             GridPane.halignment="CENTER"
             GridPane.columnIndex="0"
             GridPane.rowIndex="0"
-            onAction="#easy"/>
+            onAction="#startEasy"/>
 
     <Button text="Hard"
             GridPane.halignment="CENTER"
             GridPane.columnIndex="0"
             GridPane.rowIndex="1"
-            onAction="#hard"/>
+            onAction="#startHard"/>
 
     <Button text="Back"
             GridPane.halignment="CENTER"
             GridPane.columnIndex="0"
             GridPane.rowIndex="2"
-            onAction="#back"/>
+            onAction="#goBack"/>
 </GridPane>

@@ -10,6 +10,8 @@ import javafx.scene.text.Text;
 import ru.spbau.farutin.homework2_02.GameLogic;
 import ru.spbau.farutin.homework2_02.UI;
 
+import java.io.IOException;
+
 /**
  * GameFieldController - controller for scene with game field.
  */
@@ -32,17 +34,18 @@ public class GameFieldController {
      * @param event happened event
      */
     @FXML
-    public void fieldButtonClick(ActionEvent event) throws Exception {
+    public void onFieldButtonClick(ActionEvent event) {
         javafx.scene.control.Button button = (Button) event.getSource();
-        GameLogic.moveRequest(GridPane.getRowIndex(button), GridPane.getColumnIndex(button));
+        GameLogic.getInstance().requestMove(GridPane.getRowIndex(button), GridPane.getColumnIndex(button));
     }
 
     /**
      * Goes back in the menu hierarchy.
+     * @throws IOException if failed to load file with scene
      */
     @FXML
-    public void back() throws Exception {
-        UI.newGame();
+    public void goBack() throws IOException {
+        UI.showNewGame();
     }
 
     /**
@@ -66,7 +69,7 @@ public class GameFieldController {
      * Changes information about players turn.
      * @param player current player
      */
-    public void playerTurn(int player) {
+    public void changePlayerTurn(int player) {
         status.setText(player == 0 ? "X turn" : "O turn");
     }
 
@@ -74,7 +77,7 @@ public class GameFieldController {
      * Sets information about game results.
      * @param player winner, or -1 for draw
      */
-    public void playerWin(int player) {
+    public void setPlayerWin(int player) {
         String text;
 
         if (player == -1) {

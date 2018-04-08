@@ -14,17 +14,17 @@
             GridPane.halignment="CENTER"
             GridPane.columnIndex="0"
             GridPane.rowIndex="0"
-            onAction="#single"/>
+            onAction="#showSingleModeSelect"/>
 
     <Button text="Hot Seat"
             GridPane.halignment="CENTER"
             GridPane.columnIndex="0"
             GridPane.rowIndex="1"
-            onAction="#hotSeat"/>
+            onAction="#startHotSeat"/>
 
     <Button text="Back"
             GridPane.halignment="CENTER"
             GridPane.columnIndex="0"
             GridPane.rowIndex="2"
-            onAction="#back"/>
+            onAction="#goBack"/>
 </GridPane>

@@ -8,6 +8,8 @@ import ru.spbau.farutin.homework2_02.util.Stats;
 import ru.spbau.farutin.homework2_02.util.StatsPair;
 import ru.spbau.farutin.homework2_02.UI;
 
+import java.io.IOException;
+
 /**
  * StatsController - controller for scene with stats.
  */
@@ -30,9 +32,10 @@ public class StatsController {
 
     /**
      * Goes back in the menu hierarchy.
+     * @throws IOException if failed to load file with scene
      */
     @FXML
-    public void back() throws Exception {
-        UI.mainMenu();
+    public void goBack() throws IOException {
+        UI.showMainMenu();
     }
 }

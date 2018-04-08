@@ -11,21 +11,21 @@ public class Stats {
     /**
      * Win counter increment.
      */
-    public static void win() {
+    public static void addWin() {
         winCnt++;
     }
 
     /**
      * Draw counter increment.
      */
-    public static void draw() {
+    public static void addDraw() {
         drawCnt++;
     }
 
     /**
      * Lose counter increment.
      */
-    public static void lose() {
+    public static void addLose() {
         loseCnt++;
     }
 

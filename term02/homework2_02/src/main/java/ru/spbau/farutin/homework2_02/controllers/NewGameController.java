@@ -4,32 +4,37 @@ import javafx.fxml.FXML;
 import ru.spbau.farutin.homework2_02.GameLogic;
 import ru.spbau.farutin.homework2_02.UI;
 
+import java.io.IOException;
+
 /**
  * NewGameController - controller for scene with new game menu.
  */
 public class NewGameController {
     /**
      * Sets scene for selecting AI mode.
+     * @throws IOException if failed to load file with scene
      */
     @FXML
-    public void single() throws Exception {
-        UI.modeSelect();
+    public void showSingleModeSelect() throws IOException {
+        UI.showModeSelect();
     }
 
     /**
      * Starts new hot seat game.
+     * @throws IOException if failed to load file with scene
      */
     @FXML
-    public void hotSeat() throws Exception {
-        GameLogic.startHotSeat();
-        UI.gameField();
+    public void startHotSeat() throws IOException {
+        GameLogic.getInstance().startHotSeat();
+        UI.showGameField();
     }
 
     /**
      * Goes back in the menu hierarchy.
+     * @throws IOException if failed to load file with scene
      */
     @FXML
-    public void back() throws Exception {
-        UI.mainMenu();
+    public void goBack() throws IOException {
+        UI.showMainMenu();
     }
 }

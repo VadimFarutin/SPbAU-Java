@@ -14,13 +14,13 @@
             GridPane.halignment="CENTER"
             GridPane.columnIndex="0"
             GridPane.rowIndex="0"
-            onAction="#newGame"/>
+            onAction="#showNewGame"/>
 
     <Button text="Stats"
             GridPane.halignment="CENTER"
             GridPane.columnIndex="0"
             GridPane.rowIndex="1"
-            onAction="#stats"/>
+            onAction="#showStats"/>
 
     <Button text="Exit"
             GridPane.halignment="CENTER"

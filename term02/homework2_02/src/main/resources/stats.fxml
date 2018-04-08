@@ -35,5 +35,5 @@
             GridPane.halignment="CENTER"
             GridPane.columnIndex="0"
             GridPane.rowIndex="1"
-            onAction="#back"/>
+            onAction="#goBack"/>
 </GridPane>
