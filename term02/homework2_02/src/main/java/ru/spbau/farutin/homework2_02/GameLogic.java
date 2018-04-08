@@ -12,16 +12,22 @@ import ru.spbau.farutin.homework2_02.util.Stats;
  * GameLogic - class for handling players turns and moves.
  */
 public class GameLogic {
-    private static Field field;
-    private static boolean withAI;
-    private static AIPlayer aiPlayer;
-    private static int currentPlayer;
-    private static boolean finished;
+    private static GameLogic instance = new GameLogic();
+
+    private Field field;
+    private boolean withAI;
+    private AIPlayer aiPlayer;
+    private int currentPlayer;
+    private boolean finished;
+
+    public static GameLogic getInstance() {
+        return instance;
+    }
 
     /**
      * Start a new hot seat game.
      */
-    public static void startHotSeat() {
+    public void startHotSeat() {
         field = new Field(3);
         withAI = false;
         currentPlayer = 0;
@@ -32,7 +38,7 @@ public class GameLogic {
      * Starts a new game with AI.
      * @param level level of AI to play with
      */
-    public static void startAI(int level) {
+    public void startAI(int level) {
         field = new Field(3);
         withAI = true;
         currentPlayer = 0;
@@ -52,21 +58,21 @@ public class GameLogic {
      * @param x first coordinate
      * @param y second coordinate
      */
-    public static void moveRequest(int x, int y) {
+    public void requestMove(int x, int y) {
         if (!finished && field.makeMove(currentPlayer, x, y)) {
             GameFieldController controller = (GameFieldController) UI.getController();
 
             controller.fillCell(currentPlayer, x, y);
 
             if (field.checkWin(currentPlayer)) {
-                controller.playerWin(currentPlayer);
+                controller.setPlayerWin(currentPlayer);
                 finished = true;
 
                 if (withAI) {
                     if (currentPlayer == 0) {
-                        Stats.win();
+                        Stats.addWin();
                     } else {
-                        Stats.lose();
+                        Stats.addLose();
                     }
                 }
 
@@ -74,22 +80,22 @@ public class GameLogic {
             }
 
             if (field.isFull()) {
-                controller.playerWin(-1);
+                controller.setPlayerWin(-1);
                 finished = true;
 
                 if (withAI) {
-                    Stats.draw();
+                    Stats.addDraw();
                 }
 
                 return;
             }
 
             currentPlayer = 1 - currentPlayer;
-            controller.playerTurn(currentPlayer);
+            controller.changePlayerTurn(currentPlayer);
 
             if (currentPlayer == 1 && withAI) {
                 Pair pair = aiPlayer.chooseMove(field);
-                moveRequest((Integer) pair.first(), (Integer) pair.second());
+                requestMove((Integer) pair.first(), (Integer) pair.second());
             }
         }
     }
