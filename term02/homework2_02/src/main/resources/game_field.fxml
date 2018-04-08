@@ -15,55 +15,55 @@
     <Button GridPane.halignment="CENTER"
             GridPane.columnIndex="0"
             GridPane.rowIndex="0"
-            onAction="#fieldButtonClick"/>
+            styleClass="field_button"
             onAction="#onFieldButtonClick"/>
 
     <Button GridPane.halignment="CENTER"
             GridPane.columnIndex="0"
             GridPane.rowIndex="1"
-            onAction="#fieldButtonClick"/>
+            styleClass="field_button"
             onAction="#onFieldButtonClick"/>
 
     <Button GridPane.halignment="CENTER"
             GridPane.columnIndex="0"
             GridPane.rowIndex="2"
-            onAction="#fieldButtonClick"/>
+            styleClass="field_button"
             onAction="#onFieldButtonClick"/>
 
     <Button GridPane.halignment="CENTER"
             GridPane.columnIndex="1"
             GridPane.rowIndex="0"
-            onAction="#fieldButtonClick"/>
+            styleClass="field_button"
             onAction="#onFieldButtonClick"/>
 
     <Button GridPane.halignment="CENTER"
             GridPane.columnIndex="1"
             GridPane.rowIndex="1"
-            onAction="#fieldButtonClick"/>
+            styleClass="field_button"
             onAction="#onFieldButtonClick"/>
 
     <Button GridPane.halignment="CENTER"
             GridPane.columnIndex="1"
             GridPane.rowIndex="2"
-            onAction="#fieldButtonClick"/>
+            styleClass="field_button"
             onAction="#onFieldButtonClick"/>
 
     <Button GridPane.halignment="CENTER"
             GridPane.columnIndex="2"
             GridPane.rowIndex="0"
-            onAction="#fieldButtonClick"/>
+            styleClass="field_button"
             onAction="#onFieldButtonClick"/>
 
     <Button GridPane.halignment="CENTER"
             GridPane.columnIndex="2"
             GridPane.rowIndex="1"
-            onAction="#fieldButtonClick"/>
+            styleClass="field_button"
             onAction="#onFieldButtonClick"/>
 
     <Button GridPane.halignment="CENTER"
             GridPane.columnIndex="2"
             GridPane.rowIndex="2"
-            onAction="#fieldButtonClick"/>
+            styleClass="field_button"
             onAction="#onFieldButtonClick"/>
 
     <Text fx:id="status"
@@ -75,6 +75,5 @@
             GridPane.halignment="CENTER"
             GridPane.columnIndex="3"
             GridPane.rowIndex="2"
-            onAction="#back"/>
             onAction="#goBack"/>
 </GridPane>
