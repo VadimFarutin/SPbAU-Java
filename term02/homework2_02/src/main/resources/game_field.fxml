@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Text?>
+
+<GridPane fx:id="field"
+          alignment="center"
+          hgap="10"
+          vgap="10"
+          xmlns="http://javafx.com/javafx/8.0.91"
+          xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="ru.spbau.farutin.homework2_02.controllers.GameFieldController">
+
+    <Button GridPane.halignment="CENTER"
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="0"
+            styleClass="field_button"
+            onAction="#onFieldButtonClick"/>
+
+    <Button GridPane.halignment="CENTER"
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="1"
+            styleClass="field_button"
+            onAction="#onFieldButtonClick"/>
+
+    <Button GridPane.halignment="CENTER"
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="2"
+            styleClass="field_button"
+            onAction="#onFieldButtonClick"/>
+
+    <Button GridPane.halignment="CENTER"
+            GridPane.columnIndex="1"
+            GridPane.rowIndex="0"
+            styleClass="field_button"
+            onAction="#onFieldButtonClick"/>
+
+    <Button GridPane.halignment="CENTER"
+            GridPane.columnIndex="1"
+            GridPane.rowIndex="1"
+            styleClass="field_button"
+            onAction="#onFieldButtonClick"/>
+
+    <Button GridPane.halignment="CENTER"
+            GridPane.columnIndex="1"
+            GridPane.rowIndex="2"
+            styleClass="field_button"
+            onAction="#onFieldButtonClick"/>
+
+    <Button GridPane.halignment="CENTER"
+            GridPane.columnIndex="2"
+            GridPane.rowIndex="0"
+            styleClass="field_button"
+            onAction="#onFieldButtonClick"/>
+
+    <Button GridPane.halignment="CENTER"
+            GridPane.columnIndex="2"
+            GridPane.rowIndex="1"
+            styleClass="field_button"
+            onAction="#onFieldButtonClick"/>
+
+    <Button GridPane.halignment="CENTER"
+            GridPane.columnIndex="2"
+            GridPane.rowIndex="2"
+            styleClass="field_button"
+            onAction="#onFieldButtonClick"/>
+
+    <Text fx:id="status"
+          GridPane.halignment="CENTER"
+          GridPane.columnIndex="3"
+          GridPane.rowIndex="0"/>
+
+    <Button text="New Game"
+            GridPane.halignment="CENTER"
+            GridPane.columnIndex="3"
+            GridPane.rowIndex="2"
+            onAction="#goBack"/>
+</GridPane>
