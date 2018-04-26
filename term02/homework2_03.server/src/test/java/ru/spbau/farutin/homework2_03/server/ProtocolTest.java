@@ -68,17 +68,6 @@ public class ProtocolTest {
     }
 
     /**
-     * Checks protocol output for list command, directory is empty.
-     */
-    @Test
-    public void testProcessInputListEmpty() throws Exception {
-        Protocol protocol = new Protocol();
-
-        String result = protocol.processInput("1 ./src/test/resources/dir1");
-        assertThat(result, is("0\n"));
-    }
-
-    /**
      * Checks protocol output for list command, file is not directory.
      */
     @Test
