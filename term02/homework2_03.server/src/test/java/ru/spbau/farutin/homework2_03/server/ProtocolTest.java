@@ -20,7 +20,10 @@ public class ProtocolTest {
     public void testProcessInputNull() throws Exception {
         Protocol protocol = new Protocol();
 
-        assertThat(protocol.processInput(null), is("\n\tquit: 0\n\tlist: 1 <path>\n\tget: 2 <path>"));
+        assertThat(protocol.processInput(null), is("\n" +
+                "\tquit: 0\n" +
+                "\tlist: 1 <path>\n" +
+                "\tget: 2 <path>"));
     }
 
     /**
@@ -43,7 +46,12 @@ public class ProtocolTest {
         String result = protocol.processInput("1 ./src/test/resources");
         String[] tokens = result.split("\n");
         Collections.sort(Arrays.asList(tokens));
-        String[] correct = {"4", "dir1 True", "dir2 True", "file1.in False", "file2.out False"};
+        String[] correct = {"5",
+                "dir1 True",
+                "dir2 True",
+                "file1.in False",
+                "file2.out False",
+                "file4.out False"};
 
         assertArrayEquals(tokens, correct);
     }
