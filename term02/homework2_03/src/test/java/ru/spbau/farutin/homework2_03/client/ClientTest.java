@@ -7,6 +7,7 @@ import ru.spbau.farutin.homework2_03.server.Server;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -38,8 +39,13 @@ public class ClientTest {
 
         String output = new String(outputStream.toByteArray());
         String[] tokens = output.split("[\n\r]");
-        Collections.sort(Arrays.asList(tokens));
-        String[] correct = {"", "", "",
+        ArrayList<String> list = new ArrayList<>(Arrays.asList(tokens));
+        Collections.sort(list);
+
+        while (list.remove("")) {
+        }
+
+        String[] correct = {
                 "  get: 2 <path>",
                 "  list: 1 <path>",
                 "  quit: 0",
@@ -52,7 +58,7 @@ public class ClientTest {
                 "file2.out False",
                 "file4.out False"};
 
-        assertArrayEquals(tokens, correct);
+        assertArrayEquals(list.toArray(), correct);
     }
 
     @Test
