@@ -103,7 +103,14 @@ public class Client {
         }
     }
 
-    private @NotNull String save(@NotNull String path, @NotNull String fileData) {
+    /**
+     * Saves file.
+     * @param path path where to save
+     * @param fileData content in the following format:
+     * <size: Long>\n<content: Bytes>\n
+     * @return verdict
+     */
+    public @NotNull String save(@NotNull String path, @NotNull String fileData) {
         String result;
 
         try {
