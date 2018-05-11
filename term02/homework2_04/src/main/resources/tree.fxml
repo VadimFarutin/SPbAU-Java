@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<?import javafx.scene.text.Text?>
+<GridPane alignment="center"
+          hgap="10"
+          vgap="10"
+          xmlns="http://javafx.com/javafx/8.0.91"
+          xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="ru.spbau.farutin.homework2_04.controllers.TreeController">
+
+    <Text GridPane.columnIndex="0"
+          GridPane.rowIndex="0"
+          fx:id="currentRoot"/>
+
+    <TableView GridPane.columnIndex="0"
+               GridPane.rowIndex="1"
+               fx:id="treeTable"
+               onMouseClicked="#onTableClick"
+               onKeyPressed="#onKeyPressed">
+        <columns>
+            <TableColumn text="Name" prefWidth="500" resizable="false">
+                <cellValueFactory>
+                    <PropertyValueFactory property="name"/>
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn text="Type" prefWidth="100" resizable="false">
+                <cellValueFactory>
+                    <PropertyValueFactory property="type"/>
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+
+    <Button text="Back"
+            GridPane.halignment="CENTER"
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="2"
+            onAction="#back"/>
+
+    <Button text="Disconnect"
+            GridPane.halignment="CENTER"
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="3"
+            onAction="#disconnect"/>
+</GridPane>
