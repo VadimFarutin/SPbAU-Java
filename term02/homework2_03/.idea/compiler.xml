@@ -2,8 +2,6 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="homework2_03.server_main" target="1.8" />
-      <module name="homework2_03.server_test" target="1.8" />
       <module name="homework2_03_main" target="1.8" />
       <module name="homework2_03_test" target="1.8" />
     </bytecodeTargetLevel>
