@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Text?>
+
+<GridPane alignment="center"
+          hgap="10"
+          vgap="10"
+          xmlns="http://javafx.com/javafx/8.0.91"
+          xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="ru.spbau.farutin.test2_02.GameFieldController">
+
+    <GridPane fx:id="field"
+              alignment="center"
+              GridPane.columnIndex="0"
+              GridPane.rowIndex="0">
+
+    </GridPane>
+
+    <Text fx:id="status"
+          GridPane.halignment="CENTER"
+          GridPane.columnIndex="0"
+          GridPane.rowIndex="1"/>
+
+    <Button text="New Game"
+            GridPane.halignment="CENTER"
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="2"
+            onAction="#newGame"/>
+</GridPane>
