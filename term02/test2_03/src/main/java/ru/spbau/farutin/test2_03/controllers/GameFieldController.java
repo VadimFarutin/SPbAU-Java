@@ -53,9 +53,8 @@ public class GameFieldController {
      * @param player mark type to fill the sell with
      * @param x first coordinate
      * @param y second coordinate
-     * @param byNetwork is game by network
      */
-    public void fillCell(int player, int x, int y, boolean byNetwork) {
+    public void fillCell(int player, int x, int y) {
         ObservableList<Node> children = field.getChildren();
 
         for (Node button : children) {
@@ -64,8 +63,12 @@ public class GameFieldController {
                 break;
             }
         }
+    }
 
-        if (byNetwork) {
+    public void fillRemote(int player, int x, int y) {
+        if (player == 0) {
+
+        } else {
 
         }
     }

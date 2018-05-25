@@ -91,12 +91,15 @@ public class GameLogic {
      */
     public void requestMove(int x, int y) {
         if (!finished
-            && (!network || currentPlayer == thisPlayer)
             && field.makeMove(currentPlayer, x, y))
         {
             GameFieldController controller = (GameFieldController) UI.getController();
 
-            controller.fillCell(currentPlayer, x, y, network);
+            controller.fillCell(currentPlayer, x, y);
+
+            if (network && (thisPlayer == currentPlayer)) {
+                controller.fillRemote(thisPlayer, x, y);
+            }
 
             if (field.checkWin(currentPlayer)) {
                 controller.setPlayerWin(currentPlayer);
