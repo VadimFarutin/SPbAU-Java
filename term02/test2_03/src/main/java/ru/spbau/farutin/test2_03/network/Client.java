@@ -19,7 +19,7 @@ public class Client {
 
     public static void start(@NotNull String hostAddress, int portNumber) {
         instance = new Client(hostAddress, portNumber);
-        instance.run();
+        //instance.run();
     }
 
     /**
