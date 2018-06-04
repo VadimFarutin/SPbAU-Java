@@ -52,6 +52,7 @@ public class MyJUnit {
      * @param classToTest class with tests in it
      * @throws IllegalTestSuiteConfigurationException if there are more than one
      * <code>@BeforeClass</code> or <code>@AfterClass</code> annotated methods
+     * or there are at least one method with several annotations
      * @throws IllegalAccessException if failed to access <code>classToTest</code>
      * @throws InstantiationException if failed to instantiate <code>classToTest</code>
      */
@@ -62,6 +63,8 @@ public class MyJUnit {
         this.classToTest = classToTest.newInstance();
 
         for (Method method : classToTest.getDeclaredMethods()) {
+            int annotationCnt = 0;
+
             if (method.getAnnotation(BeforeClass.class) != null) {
                 if (beforeClass != null) {
                     throw new IllegalTestSuiteConfigurationException(
@@ -69,6 +72,7 @@ public class MyJUnit {
                 }
 
                 beforeClass = method;
+                annotationCnt++;
             }
 
             if (method.getAnnotation(AfterClass.class) != null) {
@@ -78,18 +82,27 @@ public class MyJUnit {
                 }
 
                 afterClass = method;
+                annotationCnt++;
             }
 
             if (method.getAnnotation(Before.class) != null) {
                 before.add(method);
+                annotationCnt++;
             }
 
             if (method.getAnnotation(After.class) != null) {
                 after.add(method);
+                annotationCnt++;
             }
 
             if (method.getAnnotation(Test.class) != null) {
                 tests.add(method);
+                annotationCnt++;
+            }
+
+            if (annotationCnt > 1) {
+                throw new IllegalTestSuiteConfigurationException(
+                        "Multiple annotations");
             }
         }
     }

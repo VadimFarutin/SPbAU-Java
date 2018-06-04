@@ -50,6 +50,12 @@ public class MyJUnitTest {
         myJUnit.test();
     }
 
+    @Test(expected = IllegalTestSuiteConfigurationException.class)
+    public void testMultipleAnnotations() throws Exception {
+        MyJUnit myJUnit = new MyJUnit(TestMultipleAnnotations.class);
+        myJUnit.test();
+    }
+
     @Test
     public void testBefore() throws Exception {
         MyJUnit myJUnit = new MyJUnit(TestBefore.class);
